@@ -23,6 +23,12 @@ const Todo = () => {
     resetInput()
   }
 
+  const removeTask = (id) => {
+    setTodoList((prevTodoList) => {
+      return prevTodoList.filter((todo) => todo.id !== id)
+    })
+  }
+
   const resetInput = () => {
     inputRef.current.value = ''
     inputRef.current.focus()
@@ -56,7 +62,7 @@ const Todo = () => {
       {/* todo list */}
       <div>
         {todoList.map((todo, index) => {
-          return <TodoItem key={index} text={todo.text} />
+          return <TodoItem key={index} id={todo.id} text={todo.text} isCompleted={todo.isCompleted} removeTask={removeTask} />
         })}
       </div>
     </div>
