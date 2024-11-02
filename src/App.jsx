@@ -2,7 +2,9 @@ import React from 'react'
 
 const App = () => {
   return (
-    <div>Hello ReactJS</div>
+    <div>
+      <h1 className='text-purple-900'>Hello ReactJS</h1>
+    </div>
   )
 }
 
