@@ -1,10 +1,20 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import todoIcon from '../assets/todo_icon.png'
 import TodoItem from './TodoItem'
 
 const Todo = () => {
-  const [todoList, setTodoList] = useState([])
-  const inputRef = useRef() // mapping between input and this variable
+  const TODO_LIST_LOCAL_STORAGE_KEY = 'TODO_LIST_LOCAL_STORAGE_KEY';
+  const storedTodoList = localStorage.getItem(TODO_LIST_LOCAL_STORAGE_KEY)
+
+  const [todoList, setTodoList] = useState(storedTodoList ? JSON.parse(storedTodoList) : [])
+  const inputRef = useRef() // mapping between input and this variable.
+
+  // If the array is empty, the effect will only run once.
+  // When the values in the array ([todoList]) change, the effect runs again.
+  useEffect(() => {
+    localStorage.setItem(TODO_LIST_LOCAL_STORAGE_KEY, JSON.stringify(todoList))
+    console.log(todoList)
+  }, [todoList])
 
   const addNewTask = () => {
     const inputText = inputRef.current.value.trim()
