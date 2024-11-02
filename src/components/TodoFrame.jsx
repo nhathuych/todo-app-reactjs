@@ -29,6 +29,16 @@ const Todo = () => {
     })
   }
 
+  const updateIsCompleted = (id) => {
+    setTodoList((prevTodoList) => {
+      return prevTodoList.map((todo) => {
+        if (todo.id !== id) { return todo }
+
+        return { ...todo, isCompleted: !todo.isCompleted }
+      })
+    })
+  }
+
   const resetInput = () => {
     inputRef.current.value = ''
     inputRef.current.focus()
@@ -62,7 +72,7 @@ const Todo = () => {
       {/* todo list */}
       <div>
         {todoList.map((todo, index) => {
-          return <TodoItem key={index} id={todo.id} text={todo.text} isCompleted={todo.isCompleted} removeTask={removeTask} />
+          return <TodoItem key={index} id={todo.id} text={todo.text} isCompleted={todo.isCompleted} removeTask={removeTask} updateIsCompleted={updateIsCompleted} />
         })}
       </div>
     </div>
