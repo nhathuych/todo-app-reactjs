@@ -1,9 +1,10 @@
 import React from 'react'
+import TodoFrame from './components/TodoFrame'
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-purple-900'>Hello ReactJS</h1>
+    <div className='grid min-h-screen bg-stone-900 py-4'>
+      <TodoFrame/>
     </div>
   )
 }
